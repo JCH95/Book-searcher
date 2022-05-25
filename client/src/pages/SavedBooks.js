@@ -24,7 +24,20 @@ const SavedBooks = () => {
     }
 
     try {
-      const response = await deleteBook(bookId, token);
+      await removeBook({
+        variables: {bookId: bookId},
+        update: cache => {
+          const { data } = cache.readQuery({ query: GET_ME });
+          const bookCache = data.me;
+          const savedCache = bookCache.savedBooks;
+          const newCache = savedCache.filter((book) => book.bookId);
+          cache.writeQuery({
+            query: GET_ME,
+            data: { data: { ...data.me.savedBooks}},
+          })
+          data.me.savedBooks = newCache;
+        }
+      });
 
       if (!response.ok) {
         throw new Error('something went wrong!');
