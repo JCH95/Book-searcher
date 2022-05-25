@@ -33,7 +33,7 @@ const SavedBooks = () => {
           const newCache = savedCache.filter((book) => book.bookId);
           cache.writeQuery({
             query: GET_ME,
-            data: { data: { ...data.me.savedBooks}},
+            data: { data: { ...data.me.savedBooks } },
           })
           data.me.savedBooks = newCache;
         }
