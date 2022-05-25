@@ -38,6 +38,28 @@ const resolvers = {
         const token = signToken(user);
         return { token, user };
     },
+    saveBook: async (parent, { book }) => {
+        if (context.user) {
+            const updatedUser = await User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $addToSet: { savedBooks: book } },
+                { new: true }
+            );
+
+            return updatedUser;
+        }
+    },
+    removeBook: async (parent, { book }) => {
+        if (context.user) {
+            const updatedUser = await User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $pull: { savedBooks: book } },
+                { new: true }
+            );
+
+            return updatedUser;
+        }
+    }
 };
   
 module.exports = resolvers;
