@@ -39,11 +39,9 @@ const SavedBooks = () => {
         }
       });
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      
+      // if (!response.ok) {
+      //   throw new Error('something went wrong!');
+      // }
 
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
