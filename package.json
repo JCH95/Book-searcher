@@ -16,6 +16,10 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
-    "apollo-server-express": "^2.15.0"
+    "@apollo/client": "^3.6.5",
+    "@apollo/react-hooks": "^4.0.0",
+    "apollo-server-express": "^2.15.0",
+    "bcrypt": "^5.0.1",
+    "mongoose": "^6.3.4"
   }
 }
